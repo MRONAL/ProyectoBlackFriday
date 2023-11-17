@@ -18,7 +18,7 @@ public class JuegoFrame extends JFrame {
     public JuegoFrame() {
         super("Black Friday"); // Título de la ventana
 
-        mapaPanel = new MapaPanel(); // Asume que tienes una clase Logica.MapaPanel que representa gráficamente el mapa
+        mapaPanel = new MapaPanel();
         puntosLabel = new JLabel("Puntos totales: 0");
         movimientosLabel = new JLabel("Movimientos: 0");
 
