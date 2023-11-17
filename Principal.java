@@ -1,12 +1,17 @@
+import Logica.Jugador;
+import Logica.Mapa;
+import Presentacion.JuegoFrame;
+
 import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
+        JuegoFrame juegoFrame = new JuegoFrame();
         Mapa mapa = new Mapa(10, 30);
         Jugador jugador = new Jugador(mapa.getFilas() / 2, mapa.getColumnas() / 2);
 
         mapa.generarMapa();
-
+        mapa.setJugador(jugador);
         mapa.generarObjetos(5);
 
         Scanner sc = new Scanner(System.in);
@@ -26,6 +31,8 @@ public class Principal {
             if (movimiento == 0) {
                 break;
             }
+
+            juegoFrame.actualizarInterfaz(mapa, jugador);
 
             jugador.mover(movimiento, mapa);
 

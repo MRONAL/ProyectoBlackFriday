@@ -1,3 +1,5 @@
+package Logica;
+
 public class Jugador {
     private int fila;
     private int columna;
