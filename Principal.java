@@ -5,6 +5,15 @@ import Presentacion.JuegoFrame;
 import java.util.Scanner;
 
 public class Principal {
+
+    public static void imprimirMapa(char[][] mapa) {
+        for (int i = 0; i < mapa.length; i++) {
+            for (int j = 0; j < mapa[i].length; j++) {
+                System.out.print(mapa[i][j]);
+            }
+            System.out.println();
+        }
+    }
     public static void main(String[] args) {
         JuegoFrame juegoFrame = new JuegoFrame();
         Mapa mapa = new Mapa(10, 30);
@@ -21,7 +30,7 @@ public class Principal {
         while (true) {
             mapa.setElemento(jugador.getFila(), jugador.getColumna(), '▓');
 
-            mapa.imprimirMapa();
+            imprimirMapa(mapa.getMapa());
             System.out.println("Puntos totales: " + jugador.getPuntos() + "\nRestantes: " + mapa.getObjetosRestantes());
             System.out.println("Movimientos: " + jugador.getMovimientos());
             System.out.println("Direccion: 1: Izquierda | 2: Derecha | 3: Arriba | 4: Abajo | 0: Salir");
@@ -32,14 +41,14 @@ public class Principal {
                 break;
             }
 
-            juegoFrame.actualizarInterfaz(mapa, jugador);
-
             jugador.mover(movimiento, mapa);
 
             mapa.setElemento(jugador.getFila(), jugador.getColumna(), '-');
 
+            juegoFrame.actualizarInterfaz(mapa, jugador);
+
             if (mapa.getObjetosRestantes() == 0) {
-                mapa.imprimirMapa();
+                imprimirMapa(mapa.getMapa());
                 System.out.println("¡Has recogido todos los objetos! Ganaste.");
                 break;
             }

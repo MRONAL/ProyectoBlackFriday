@@ -22,7 +22,7 @@ public class JuegoFrame extends JFrame {
         puntosLabel = new JLabel("Puntos totales: 0");
         movimientosLabel = new JLabel("Movimientos: 0");
 
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(2, 1));
         add(mapaPanel);
         add(puntosLabel);
         add(movimientosLabel);
@@ -31,6 +31,7 @@ public class JuegoFrame extends JFrame {
         pack();
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
         setVisible(true);
+
     }
 
     public void actualizarInterfaz(Mapa mapa, Jugador jugador) {
