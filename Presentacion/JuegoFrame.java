@@ -34,7 +34,7 @@ public class JuegoFrame extends JFrame {
     }
 
     public void actualizarInterfaz(Mapa mapa, Jugador jugador) {
-        mapaPanel.actualizarMapa(mapa); // Asume que tienes un método en Logica.MapaPanel para actualizar la representación gráfica del mapa
+        mapaPanel.actualizarMapa(mapa);
         puntosLabel.setText("Puntos totales: " + jugador.getPuntos());
         movimientosLabel.setText("Movimientos: " + jugador.getMovimientos());
     }
