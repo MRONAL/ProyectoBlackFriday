@@ -1,7 +1,5 @@
 package Logica;
 
-import Logica.Jugador;
-
 import java.util.Random;
 
 public class Mapa {
@@ -10,7 +8,7 @@ public class Mapa {
     private int columnas;
     private int objetosRestantes;
 
-    private Jugador jugador;
+    public Jugador jugador;
 
     public Mapa(int filas, int columnas){
         this.filas = filas;
@@ -54,6 +52,9 @@ public class Mapa {
 
     public void setobjetosRestantes(int cantidad) {
         objetosRestantes = cantidad;
+    }
+    public int getObjetosRestantes() {
+        return objetosRestantes;
     }
     public void generarObjetos(int cantidad) {
         Random rand = new Random();
@@ -104,8 +105,6 @@ public class Mapa {
         return columnas;
     }
 
-    public int getObjetosRestantes() {
-        return objetosRestantes;
-    }
+
 
 }

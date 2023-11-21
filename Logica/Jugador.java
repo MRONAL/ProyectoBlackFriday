@@ -1,4 +1,5 @@
 package Logica;
+import Presentacion.JuegoFrame;
 
 public class Jugador {
     private int fila;
@@ -13,7 +14,7 @@ public class Jugador {
         movimientos = 0;
     }
 
-    public void mover(int direccion, Mapa mapa) {
+    public boolean mover(int direccion, Mapa mapa) {
         int nuevaFila = fila;
         int nuevaColumna = columna;
 
@@ -34,7 +35,7 @@ public class Jugador {
             default:
                 System.out.println("Digito No Autorizado.");
                 System.out.println();
-                return;
+                return false;
         }
 
         // Verificar si el movimiento es válido y actualizar el mapa
@@ -50,10 +51,11 @@ public class Jugador {
             fila = nuevaFila;
             columna = nuevaColumna;
             movimientos++;
-
+            return true;
         } else {
             System.out.println("Movimiento inválido.");
             System.out.println();
+            return false;
         }
     }
 
