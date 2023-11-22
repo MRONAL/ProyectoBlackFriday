@@ -1,5 +1,4 @@
 package Logica;
-import Presentacion.JuegoFrame;
 
 public class Jugador {
     private int fila;
