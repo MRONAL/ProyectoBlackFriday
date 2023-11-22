@@ -61,13 +61,14 @@ public class JuegoFrame extends JFrame {
         mensaje = new JLabel("Muevase Con las flechas");
         puntosLabel = new JLabel("Puntos totales: " + jugador.getPuntos());
         movimientosLabel = new JLabel("Movimientos: " + jugador.getMovimientos());
+        objetosRestantes = new JLabel("");
 
 
         setLayout(new GridLayout(3, 1));
         add(mapaPanel);
         add(puntosLabel);
         add(movimientosLabel);
-        //add(objetosRestantes);
+        add(objetosRestantes);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
@@ -112,6 +113,6 @@ public class JuegoFrame extends JFrame {
         mapaPanel.actualizarMapa(mapa);
         puntosLabel.setText("Puntos totales: " + jugador.getPuntos());
         movimientosLabel.setText("Movimientos: " + jugador.getMovimientos());
-        objetosRestantes = new JLabel("Objetos Restantes: " + mapa.getObjetosRestantes());
+        objetosRestantes.setText("Objetos Restantes: " + mapa.getObjetosRestantes());
     }
 }
