@@ -6,7 +6,7 @@ public class Mapa {
     private char[][] mapa;
     private int filas;
     private int columnas;
-    private int objetosRestantes;
+    public int objetosRestantes;
 
     public Jugador jugador;
 
@@ -70,7 +70,7 @@ public class Mapa {
                 objetosGenerados++;
             }
         }
-        setobjetosRestantes(cantidad);
+        setobjetosRestantes(objetosGenerados); // Actualizar objetosRestantes con la cantidad real generada
     }
 
     private boolean esPosicionAdyacente(int fila1, int columna1, int fila2, int columna2) {
@@ -104,7 +104,4 @@ public class Mapa {
     public int getColumnas() {
         return columnas;
     }
-
-
-
 }

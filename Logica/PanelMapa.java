@@ -2,9 +2,8 @@ package Logica;
 
 import javax.swing.*;
 import java.awt.*;
-import Logica.Mapa;
 
-public class MapaPanel extends JPanel {
+public class PanelMapa extends JPanel {
     private Mapa mapa;
 
     public void actualizarMapa(Mapa nuevoMapa) {
