@@ -13,6 +13,9 @@ import java.awt.*;
  * Clase Logica.PanelMapa del juego
  */
 public class PanelMapa extends JPanel {
+    /**************************************************************************
+     * Atributos
+     **************************************************************************/
     private Mapa mapa;
 
     /**
@@ -20,7 +23,7 @@ public class PanelMapa extends JPanel {
      *
      * @param nuevoMapa Actualiza el mapa
      *
-     *  Complejidad Temporal: O(1)
+     *  Complejidad Temporal: O(1) Complejidad Constante.
      */
     public void actualizarMapa(Mapa nuevoMapa) {
         this.mapa = nuevoMapa;

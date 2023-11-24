@@ -1,5 +1,14 @@
 package Presentacion;
 
+/**
+ * En esta clase se representa graficamente toda la interfaz del juego, creando todos los
+ * atributos necesarios como el panel en donde va a ir ubicado el panel del mapa (mapaPanel),
+ * la etiqueta donde se muestran los puntos que lleva (puntosLabel), la etiqueta donde se muestran
+ * los movimientos y los objetos restantes (movimientosLabel y objetosRestantes respectivamente),
+ * el panel superior en el que estan contenidos las etiquetas anteriores (topPanel), y el boton de
+ * "Reiniciar / Cerrar" por si el usuario decide reiniciar o terminar y cerrar el juego. *
+ */
+
 import Logica.Mapa;
 import Logica.Jugador;
 import Logica.PanelMapa;
@@ -11,7 +20,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Clase Presentacion.JuegoFrame del juego
+ */
 public class JuegoFrame extends JFrame {
+
+    /**************************************************************************
+     * Atributos
+     **************************************************************************/
     private PanelMapa mapaPanel;
     private JLabel puntosLabel;
     private JLabel movimientosLabel;
@@ -19,9 +35,14 @@ public class JuegoFrame extends JFrame {
     private JPanel topPanel;
     private JButton reiniciarButton;
 
-    Mapa mapa;
-    Jugador jugador;
+    Mapa mapa; //Inicializar / integrar el mapa
+    Jugador jugador; //Inicializar / integrar el Jugador
 
+    /**
+     * Método para inicializar el juego y actualizar la interfaz cada vez que sea llamado.
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
     public void jugar() {
         mapa.setElemento(jugador.getFila(), jugador.getColumna(), '▓');
 
@@ -44,6 +65,11 @@ public class JuegoFrame extends JFrame {
         mapa.generarObjetos(5);
     }
 
+    /**
+     * Constructor de la clase Presentacion.JuegoFrame
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
     public JuegoFrame() {
         super("Black Friday"); // Título de la ventana
 
@@ -60,22 +86,29 @@ public class JuegoFrame extends JFrame {
         movimientosLabel = new JLabel("Movimientos: " + jugador.getMovimientos());
         objetosRestantes = new JLabel("");
 
-        mapaPanel.setLayout(new BorderLayout());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mapaPanel.setLayout(new BorderLayout()); // Forma en la que se organizan los objetos
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Al cerrar la ventana se detiene el juego y acabar el proceso
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
-        setVisible(true);
+        setVisible(true); //Hacer visible la interfaz
 
 
         topPanel = new JPanel();
 
+        // Añadir las etiquetas puntos, movimientos y objetos restantes al panel superior
         topPanel.add(puntosLabel);
         topPanel.add(movimientosLabel);
         topPanel.add(objetosRestantes);
 
-        add(topPanel, BorderLayout.NORTH);
-        add(mapaPanel, BorderLayout.CENTER);
+        add(topPanel, BorderLayout.NORTH); // Ubicar el panel en la parte suprior de la ventana
+        add(mapaPanel, BorderLayout.CENTER); // Ubicar el panel en la parte central de la ventana
 
-        reiniciarButton = new JButton("REINICIAR / CERRAR");
+        reiniciarButton = new JButton("REINICIAR / CERRAR"); // Agregar el boton "Reiniciar / Cerrar"
+        /**
+         * Evento en el que se agrega la acción que realizara el boton al ser precionado, en este caso
+         * llamar al metodo reinicarJuego().
+         *
+         * Complejidad Temporal: O(1) Complejidad Constante.
+         */
         reiniciarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,12 +120,18 @@ public class JuegoFrame extends JFrame {
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(reiniciarButton);
 
-        // Agregar el panel al sur de la ventana
+        // Agregar el panel a la parte inferior de la ventana
         add(bottomPanel, BorderLayout.SOUTH);
 
-
+        // Actualizar la interfaz con el mapa y el jugador
         actualizarInterfaz(mapa, jugador);
 
+        /**
+         * Evento en el que se agrega la acción que realiza los movimientos que responden al accionar las teclas respectivamente
+         * y retorna el número vinculado al movimiento y lo envia al Switch case a la clase Jugador para realizar el moviento.
+         *
+         * Complejidad Temporal: O(1) Complejidad Constante.
+         */
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -114,6 +153,8 @@ public class JuegoFrame extends JFrame {
                         break;
                 }
 
+                // Revisa que mientras movimiento sea distinto de 0 llame al metodo jugar(), y en caso que lo sea (Choque contra las paredes u obstaculos),
+                // el movimiento es invalido y muestra el mensaje.
                 if(movimiento != 0){
                     if (jugador.mover(movimiento, mapa)) {
                         jugar();
@@ -126,6 +167,14 @@ public class JuegoFrame extends JFrame {
         });
     }
 
+    /**
+     * Método que actualiza la interfaz teniendo en cuenta los parametros mapa y Jugador
+     *
+     * @param mapa
+     * @param jugador
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
     public void actualizarInterfaz(Mapa mapa, Jugador jugador) {
         mapaPanel.actualizarMapa(mapa);
         puntosLabel.setText("Puntos totales: " + jugador.getPuntos());
@@ -133,6 +182,11 @@ public class JuegoFrame extends JFrame {
         objetosRestantes.setText("Objetos Restantes: " + mapa.getObjetosRestantes());
     }
 
+    /**
+     * Método para reiniciar el juego el cual es llamado en el boton, o al finalizar el juego
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
     private void reiniciarJuego() {
         // Preguntar al usuario si desea reiniciar o cerrar el juego
         int opcion = JOptionPane.showOptionDialog(
