@@ -31,7 +31,7 @@ public class JuegoFrame extends JFrame {
             actualizarInterfaz(mapa, jugador);
             JOptionPane.showMessageDialog(mapaPanel,"¡Has recogido todos los objetos! Ganaste.");
             JOptionPane.showMessageDialog(mapaPanel,"¡Juego terminado!");
-            System.exit(0);
+            reiniciarJuego();
         }
     }
 
