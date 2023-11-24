@@ -39,33 +39,6 @@ public class JuegoFrame extends JFrame {
     Jugador jugador; //Inicializar / integrar el Jugador
 
     /**
-     * Método para inicializar el juego y actualizar la interfaz cada vez que sea llamado.
-     *
-     * Complejidad Temporal: O(1) Complejidad Constante.
-     */
-    public void jugar() {
-        mapa.setElemento(jugador.getFila(), jugador.getColumna(), '▓');
-
-        actualizarInterfaz(mapa, jugador);
-
-        if (mapa.getObjetosRestantes() == 0) {
-            actualizarInterfaz(mapa, jugador);
-            JOptionPane.showMessageDialog(mapaPanel,"¡Has recogido todos los objetos! Ganaste.");
-            JOptionPane.showMessageDialog(mapaPanel,"¡Juego terminado!");
-            reiniciarJuego();
-        }
-    }
-
-    public void inicializarJuego() {
-        mapa = new Mapa(10, 30);
-        jugador = new Jugador(mapa.getFilas() / 2, mapa.getColumnas() / 2);
-
-        mapa.generarMapa();
-        mapa.setJugador(jugador);
-        mapa.generarObjetos(5);
-    }
-
-    /**
      * Constructor de la clase Presentacion.JuegoFrame
      *
      * Complejidad Temporal: O(1) Complejidad Constante.
@@ -103,6 +76,7 @@ public class JuegoFrame extends JFrame {
         add(mapaPanel, BorderLayout.CENTER); // Ubicar el panel en la parte central de la ventana
 
         reiniciarButton = new JButton("REINICIAR / CERRAR"); // Agregar el boton "Reiniciar / Cerrar"
+
         /**
          * Evento en el que se agrega la acción que realizara el boton al ser precionado, en este caso
          * llamar al metodo reinicarJuego().
@@ -165,6 +139,42 @@ public class JuegoFrame extends JFrame {
                 }
             }
         });
+    }
+
+    /**************************************************************************
+     ******************************** Métodos ********************************
+     **************************************************************************/
+
+    /**
+     * Método para inicializar el juego y actualizar la interfaz cada vez que sea llamado.
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
+    public void jugar() {
+        mapa.setElemento(jugador.getFila(), jugador.getColumna(), '▓');
+
+        actualizarInterfaz(mapa, jugador);
+
+        if (mapa.getObjetosRestantes() == 0) {
+            actualizarInterfaz(mapa, jugador);
+            JOptionPane.showMessageDialog(mapaPanel,"¡Has recogido todos los objetos! Ganaste.");
+            JOptionPane.showMessageDialog(mapaPanel,"¡Juego terminado!");
+            reiniciarJuego();
+        }
+    }
+
+    /**
+     * Método para iniciar el juego el cual crea el mapa con los parametros necesarios
+     *
+     * Complejidad Temporal: O(1) Complejidad Constante.
+     */
+    public void inicializarJuego() {
+        mapa = new Mapa(10, 30); // Tamaño del mapa
+        jugador = new Jugador(mapa.getFilas() / 2, mapa.getColumnas() / 2); // Posiciona al jugador en la mitad del tablero
+
+        mapa.generarMapa(); // Gernera el mapa en la clase Mapa
+        mapa.setJugador(jugador); // Genera el jugador
+        mapa.generarObjetos(5); // Genera los objetos
     }
 
     /**
