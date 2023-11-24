@@ -1,5 +1,9 @@
 package Logica;
 
+/**
+ * En esta clase se
+ */
+
 import javax.swing.*;
 import java.awt.*;
 
