@@ -22,19 +22,24 @@ public class JuegoFrame extends JFrame {
     Mapa mapa;
     Jugador jugador;
 
+    // Método principal para iniciar el juego.
     public void jugar() {
+        // Marcar la posición del jugador en el mapa.
         mapa.setElemento(jugador.getFila(), jugador.getColumna(), '▓');
 
+        // Actualizar la interfaz gráfica.
         actualizarInterfaz(mapa, jugador);
 
+        // Verificar si se han recogido todos los objetos y mostrar un mensaje de victoria.
         if (mapa.getObjetosRestantes() == 0) {
             actualizarInterfaz(mapa, jugador);
-            JOptionPane.showMessageDialog(mapaPanel,"¡Has recogido todos los objetos! Ganaste.");
-            JOptionPane.showMessageDialog(mapaPanel,"¡Juego terminado!");
+            JOptionPane.showMessageDialog(mapaPanel, "¡Has recogido todos los objetos! Ganaste.");
+            JOptionPane.showMessageDialog(mapaPanel, "¡Juego terminado!");
             System.exit(0);
         }
     }
 
+    // Método para inicializar el juego con un nuevo mapa y jugador.
     public void inicializarJuego() {
         mapa = new Mapa(10, 30);
         jugador = new Jugador(mapa.getFilas() / 2, mapa.getColumnas() / 2);
@@ -44,11 +49,12 @@ public class JuegoFrame extends JFrame {
         mapa.generarObjetos(5);
     }
 
+    // Constructor de la clase JuegoFrame.
     public JuegoFrame() {
         super("Black Friday"); // Título de la ventana
 
         inicializarJuego();
-        JOptionPane.showMessageDialog(mapaPanel,"Muevase Con las flechas");
+        JOptionPane.showMessageDialog(mapaPanel, "Muevete con las flechas");
 
         // Obtener el tamaño de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -64,7 +70,6 @@ public class JuegoFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centra la ventana en la pantalla
         setVisible(true);
-
 
         topPanel = new JPanel();
 
@@ -90,9 +95,10 @@ public class JuegoFrame extends JFrame {
         // Agregar el panel al sur de la ventana
         add(bottomPanel, BorderLayout.SOUTH);
 
-
+        // Actualizar la interfaz gráfica inicial.
         actualizarInterfaz(mapa, jugador);
 
+        // Manejar eventos de teclado para controlar el movimiento del jugador.
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -114,18 +120,20 @@ public class JuegoFrame extends JFrame {
                         break;
                 }
 
+                // Verificar si el movimiento es válido y realizarlo.
                 if(movimiento != 0){
                     if (jugador.mover(movimiento, mapa)) {
                         jugar();
                     }
                     else {
-                        JOptionPane.showMessageDialog(mapaPanel, "Movimiento invalido");
+                        JOptionPane.showMessageDialog(mapaPanel, "Movimiento inválido");
                     }
                 }
             }
         });
     }
 
+    // Método para actualizar la interfaz gráfica con la información actual del juego.
     public void actualizarInterfaz(Mapa mapa, Jugador jugador) {
         mapaPanel.actualizarMapa(mapa);
         puntosLabel.setText("Puntos totales: " + jugador.getPuntos());
@@ -133,6 +141,7 @@ public class JuegoFrame extends JFrame {
         objetosRestantes.setText("Objetos Restantes: " + mapa.getObjetosRestantes());
     }
 
+    // Método para reiniciar el juego o cerrarlo según la elección del jugador.
     private void reiniciarJuego() {
         // Preguntar al usuario si desea reiniciar o cerrar el juego
         int opcion = JOptionPane.showOptionDialog(

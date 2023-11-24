@@ -6,6 +6,8 @@ public class Jugador {
     private int puntos;
     private int movimientos;
 
+    // Constructor que inicializa la posición del jugador y sus estadísticas.
+    // Complejidad Temporal: O(1)
     public Jugador(int fila, int columna) {
         this.fila = fila;
         this.columna = columna;
@@ -13,6 +15,8 @@ public class Jugador {
         movimientos = 0;
     }
 
+    // Método para mover al jugador en la dirección especificada en el mapa.
+    // Complejidad Temporal: O(1)
     public boolean mover(int direccion, Mapa mapa) {
         int nuevaFila = fila;
         int nuevaColumna = columna;
@@ -45,7 +49,7 @@ public class Jugador {
                 mapa.setobjetosRestantes(mapa.getObjetosRestantes() - 1);
             }
 
-            mapa.setElemento(fila, columna,'-');
+            mapa.setElemento(fila, columna, '-');
             mapa.setElemento(nuevaFila, nuevaColumna, '▓');
             fila = nuevaFila;
             columna = nuevaColumna;
@@ -58,22 +62,32 @@ public class Jugador {
         }
     }
 
+    // Devuelve la fila actual del jugador.
+    // Complejidad Temporal: O(1)
     public int getFila() {
         return fila;
     }
 
+    // Devuelve la columna actual del jugador.
+    // Complejidad Temporal: O(1)
     public int getColumna() {
         return columna;
     }
 
+    // Devuelve la cantidad de puntos del jugador.
+    // Complejidad Temporal: O(1)
     public int getPuntos() {
         return puntos;
     }
 
+    // Establece la cantidad de puntos del jugador.
+    // Complejidad Temporal: O(1)
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
 
+    // Devuelve la cantidad de movimientos del jugador.
+    // Complejidad Temporal: O(1)
     public int getMovimientos() {
         return movimientos;
     }
