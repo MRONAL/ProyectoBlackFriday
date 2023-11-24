@@ -10,11 +10,16 @@ import java.awt.*;
 public class PanelMapa extends JPanel {
     private Mapa mapa;
 
+    // Método para actualizar el mapa mostrado en el panel.
+    // Complejidad Temporal: O(1)
     public void actualizarMapa(Mapa nuevoMapa) {
         this.mapa = nuevoMapa;
         repaint();
     }
 
+    // Método para dibujar el mapa en el panel.
+    // Complejidad Temporal: O(filas * columnas)
+    //                       O(N^2)
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

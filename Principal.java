@@ -11,6 +11,8 @@ public class Principal {
      * Complejidad Temporal: O(1) Complejidad Constante
      */
     public static void main(String[] args) {
+        // Crear una instancia de la clase JuegoFrame para iniciar el juego.
+        //Complejidad O(1)
         JuegoFrame juegoFrame = new JuegoFrame();
     }
 }
